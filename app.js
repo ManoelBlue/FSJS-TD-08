@@ -23,10 +23,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
+// 404 handler:
+app.use((req, res, next) => {
+  const err = new Error('The page was NOT FOUND.');
+  err.status = 404;
+  res.render('page-not-found', {error: err})
+  next(err);
+})
 
 // error handler
 app.use(function(err, req, res, next) {
