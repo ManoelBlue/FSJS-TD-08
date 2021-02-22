@@ -39,7 +39,11 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.render(err.message || 'The page cannot be served');
+  console.error('Error status: ', err.status);
+  console.error('Error message: ', err.message);
+
+  res.render('error', {error: err})
 });
 
 (async () => {
