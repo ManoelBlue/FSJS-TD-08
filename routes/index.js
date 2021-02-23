@@ -26,6 +26,9 @@ router.get('/books', asyncHandler(async (req, res) => {
   res.render('index', {books});
 }));
 
-
+/* Create New Book route */
+router.get('/books/new', (req, res) => {
+  res.render('new-book');
+});
 
 module.exports = router;
