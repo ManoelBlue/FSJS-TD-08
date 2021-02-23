@@ -47,4 +47,14 @@ router.post('/books/new', asyncHandler(async (req, res) => {
   }
 }));
 
+/* GET book detail form */
+router.get('/books/:id', asyncHandler(async (req,res) => {
+  const book = await Book.findByPk(req.params.id);
+  if(book) {
+    res.render('update-book', {book});
+  } else {
+    res.sendStatus(404);
+  }
+}));
+
 module.exports = router;
