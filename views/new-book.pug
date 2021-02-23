@@ -3,6 +3,13 @@ extends layout
 block content
     h1 New Book
     form
+        if missingTitle || missingAuthor
+            h2.error Oooops!
+            ul.error
+                if missingTitle
+                    li Author is required
+                if missingAuthor
+                    li Name is required
         p
             label(for='title') Title
             input#title(name='title' type='text')
