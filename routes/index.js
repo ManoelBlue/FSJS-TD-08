@@ -68,14 +68,12 @@ router.post('/books/new', asyncHandler(async (req, res) => {
     let book;
     try {
         book = await Book.create(req.body);
-        console.log(error);
         res.redirect('/books');
     } catch (error) {
         if(error.name === "SequelizeValidationError") {
-            console.log(error);
-            res.render('update-book', {
-                book,
-                error: error.erros
+            console.log(error.errors.length);
+            res.render('new-book', {
+                errors: error.errors
             });
         } else {
             throw error;
