@@ -35,27 +35,28 @@ router.post('/books', asyncHandler(async (req, res) => {
             [Op.or]: [
                 {
                     title: {
-                    [Op.ilike]: `%${query}%`
+                    [Op.like]: `%${query}%`
                     }
                 },
                 {
                     author: {
-                    [Op.ilike]: `%${query}%`
+                    [Op.like]: `%${query}%`
                     }
                 },
                 {
                     genre: {
-                        [Op.ilike]: `%${query}%`
+                        [Op.like]: `%${query}%`
                     }
                 },
                 {
                     year: {
-                        [Op.ilike]: `%${query}%`
+                        [Op.like]: `%${query}%`
                     }
                 },
             ]
         }
-    })
+    });
+    res.render('index', {books});
 }))
 
 /* GET create New Book route */
