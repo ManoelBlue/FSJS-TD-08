@@ -26,7 +26,7 @@ router.get('/books', asyncHandler(async (req, res) => {
   res.render('index', {books});
 }));
 
-/* Create New Book route */
+/* GET create New Book route */
 router.get('/books/new', (req, res) => {
   res.render('new-book');
 });
@@ -36,12 +36,6 @@ router.post('/books/new', asyncHandler(async (req, res) => {
   let book;
   try {
     book = await Book.create(req.body);
-    if (!req.body.title || !req.body.author) {
-      res.redirect('/books/new', {
-        missingTitle: (req.body.title.length > 0),
-        missingAuthor: (req.body.author.length > 0),
-      })
-    }
   } catch (error) {
     if(error.name === "SequelizeValidationError") {
       // book = await Book.build(req.body);
