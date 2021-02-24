@@ -2,6 +2,8 @@ extends layout
 
 block content
     h1 Books
+    form(method='post' action='/books' class='search')
+        input#search(name='query' type='text')
     p
         a.button(href='/books/new') Create New Book
     table

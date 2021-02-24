@@ -12,10 +12,21 @@ body {
   background-color: lightblue;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 body > p {
   font-size: 1.5rem;
+}
+
+form.search {
+  padding: 20px;
+}
+
+form.search input {
+  width: 100%;
+  font-size: 1.5rem;
+  padding-left: 10px;
 }
 
 table thead {
