@@ -6,3 +6,56 @@ body {
 a {
   color: #00B7FF;
 }
+
+/* Extra styles: */
+body {
+  background-color: lightblue;
+  display: flex;
+  flex-direction: column;
+}
+
+body > p {
+  font-size: 1.5rem;
+}
+
+table thead {
+  background-color: darkblue;
+  color: white;
+}
+
+table tbody {
+  background-color: steelblue;
+  color: gray;
+}
+
+form {
+  background-color: steelblue;
+  border-radius: 15px;
+  padding: 0 40px;
+  font-size: 1rem;
+}
+
+form p {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+form p label {
+  width: 25%;
+
+}
+
+form p input {
+  width: 75%;
+  padding: 5px 10px;
+}
+
+form p input:focus {
+  box-shadow: 0 0 15px 5px yellow;
+}
+
+.error {
+  color: darkred;
+}
