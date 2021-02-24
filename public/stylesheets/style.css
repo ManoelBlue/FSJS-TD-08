@@ -24,8 +24,7 @@ table thead {
 }
 
 table tbody {
-  background-color: steelblue;
-  color: gray;
+  background-color: white;
 }
 
 form {
@@ -54,6 +53,10 @@ form p input {
 
 form p input:focus {
   box-shadow: 0 0 15px 5px yellow;
+}
+
+form ~ form {
+  margin-top: 2rem;
 }
 
 .error {
