@@ -22,7 +22,9 @@ router.get('/', (req, res) => {
 
 /* GET Books route */
 router.get('/books', asyncHandler(async (req, res) => {
-    const books = await Book.findAll();
+    const books = await Book.findAll({
+        limit: 5
+    });
     console.log(books.length);
     res.render('index', {books});
 }));
@@ -31,6 +33,7 @@ router.get('/books', asyncHandler(async (req, res) => {
 router.post('/books', asyncHandler(async (req, res) => {
     const query = req.body.query.toLowerCase();
     const books = await Book.findAll({
+        limit: 5,
         where: {
             [Op.or]: [
                 {
