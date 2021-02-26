@@ -78,3 +78,15 @@ form ~ form {
 .error {
   color: darkred;
 }
+
+.pagination {
+  color: darkblue;
+  margin-top: 1.2rem;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.pagination a {
+  font-size: 2rem;
+  text-decoration: none;
+}

@@ -14,10 +14,14 @@ block content
                 th Genre
                 th Year
         tbody
-            each book in books
+            each book in booksPg
                 tr
                 td
                     a(href=`/books/${book.id}`)= book.title
                 td= book.author
                 td= book.genre
                 td= book.year
+    .pagination
+        - var n = 1
+        while n < pages + 1
+            a(href=`/books/?page=${n}`)= n++
