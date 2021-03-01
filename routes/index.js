@@ -78,7 +78,7 @@ router.post('/books/new', asyncHandler(async (req, res) => {
 }));
 
 /* GET book detail form */
-router.get('/book/:id', asyncHandler(async (req,res) => {
+router.get('/books/:id', asyncHandler(async (req,res) => {
     const book = await Book.findByPk(req.params.id);
     if(book) {
         res.render('update-book', {book});
@@ -88,7 +88,7 @@ router.get('/book/:id', asyncHandler(async (req,res) => {
 }));
 
 /* POST book updated details */
-router.post('/book/:id', asyncHandler(async (req,res) => {
+router.post('/books/:id', asyncHandler(async (req,res) => {
     let book;
     try {
         book = await Book.findByPk(req.params.id);
@@ -112,7 +112,7 @@ router.post('/book/:id', asyncHandler(async (req,res) => {
 }));
 
 /* Delete book */
-router.post('/book/:id', asyncHandler(async (req ,res) => {
+router.post('/books/:id/delete', asyncHandler(async (req ,res) => {
     const book = await Book.findByPk(req.params.id);
     await book.destroy();
     res.redirect('/books');
