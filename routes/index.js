@@ -3,8 +3,6 @@ var router = express.Router();
 const Book = require('../models').Book;
 const { Op } = require("sequelize");
 let limit = 5;
-let books = [];
-let booksPg = [];
 
 /* Handler function to wrap each route. */
 function asyncHandler(cb){
@@ -25,10 +23,11 @@ router.get('/', (req, res) => {
 
 /* GET Books route */
 router.get('/books', asyncHandler(async (req, res) => {
-    books = books.length > 0 ? books : await Book.findAll({});
+    const books = await Book.findAll();
+    console.log(books);
     const page = (req.query.page) ? req.query.page : 1;
     const pages = Math.ceil(books.length / limit);
-    booksPg = page
+    const booksPg = page
         ? books.slice(limit * (page - 1), limit * page)
         : books.slice(0, 5);
     res.render('index', {booksPg, pages});
@@ -37,7 +36,7 @@ router.get('/books', asyncHandler(async (req, res) => {
 /* POST books search route */
 router.post('/books', asyncHandler(async (req, res) => {
     const query = req.body.query.toLowerCase();
-    books = await Book.findAll({
+    const books = await Book.findAll({
         where: {
             [Op.or]: [
                 {title: {[Op.like]: `%${query}%`}},
@@ -48,7 +47,7 @@ router.post('/books', asyncHandler(async (req, res) => {
         }
     });
     const pages = Math.ceil(books.length / limit);
-    booksPg = books.slice(0, 5);
+    const booksPg = books.slice(0, 5);
     res.render('index', {booksPg, pages});
 }));
 
@@ -75,12 +74,12 @@ router.post('/books/new', asyncHandler(async (req, res) => {
 }));
 
 /* GET book detail form */
-router.get('/books/:id', asyncHandler(async (req,res) => {
+router.get('/books/:id', asyncHandler(async (req,res, next) => {
     const book = await Book.findByPk(req.params.id);
     if(book) {
         res.render('update-book', {book});
     } else {
-        res.sendStatus(404);
+        next();
     }
 }));
 

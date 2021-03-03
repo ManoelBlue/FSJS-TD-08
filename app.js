@@ -27,7 +27,7 @@ app.use('/users', usersRouter);
 app.use((req, res, next) => {
   const err = new Error('The page was NOT FOUND.');
   err.status = 404;
-  res.render('page-not-found', {error: err})
+  res.render('page-not-found');
   next(err);
 })
 
